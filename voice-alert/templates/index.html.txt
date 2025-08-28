@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Alert Test</title>
+</head>
+<body>
+    <h1>Send Test Alert</h1>
+    <form id="alertForm">
+        <input type="text" id="message" placeholder="Enter message">
+        <button type="submit">Send Alert</button>
+    </form>
+    <script>
+        document.getElementById("alertForm").onsubmit = async function(e) {
+            e.preventDefault();
+            const message = document.getElementById("message").value;
+            await fetch("/alert", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message})
+            });
+            alert("Alert Sent!");
+        }
+    </script>
+</body>
+</html>
